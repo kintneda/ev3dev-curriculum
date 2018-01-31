@@ -44,13 +44,13 @@ class Snatch3r(object):
         right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
         if degrees > 0:
-            left_motor.run_to_rel_pos(speed_sp=-speed, position_sp=degrees)
-            right_motor.run_to_rel_pos(speed_sp=speed, position_sp=degrees)
+            left_motor.run_to_rel_pos(speed_sp=speed, position_sp=degrees)
+            # right_motor.run_to_rel_pos(speed_sp=speed, position_sp=degrees)
             left_motor.wait_while(ev3.Motor.STATE_RUNNING)
             right_motor.wait_while(ev3.Motor.STATE_RUNNING)
 
         if degrees < 0:
-            left_motor.run_to_rel_pos(speed_sp=speed, position_sp=degrees)
-            right_motor.run_to_rel_pos(speed_sp=-speed, position_sp=degrees)
+            # left_motor.run_to_rel_pos(speed_sp=speed, position_sp=degrees)
+            right_motor.run_to_rel_pos(speed_sp=speed, position_sp=degrees)
             left_motor.wait_while(ev3.Motor.STATE_RUNNING)
             right_motor.wait_while(ev3.Motor.STATE_RUNNING)
