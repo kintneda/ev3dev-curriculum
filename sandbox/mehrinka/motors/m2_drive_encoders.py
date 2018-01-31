@@ -30,17 +30,13 @@ def main():
 
     time_s = 1  # Any value other than 0.
     while time_s != 0:
-        left_sp = int(input("Enter a speed (0 to 900 dps): "))
-        right_sp = left_sp
+        speed = int(input("Enter a speed (0 to 900 dps): "))
         distance = int(input("Distance to travel (inches): "))
-        time_s = 88 * distance / left_sp
-        # left_motor.run_forever(speed_sp=left_sp)
-        # right_motor.run_forever(speed_sp=right_sp)
-        left_motor.run_to_rel_pos(position_sp=distance, speed_sp=left_sp, stop_action=ev3.Motor.STOP_ACTION_BRAKE)
-        right_motor.run_to_rel_pos(position_sp=distance, speed_sp=right_sp, stop_action=ev3.Motor.STOP_ACTION_BRAKE)
-        # time.sleep(time_s)
-        left_motor.stop()
-        right_motor.stop(stop_action="brake")
+        position = (distance / 4) * 360
+        left_motor.run_to_rel_pos(position_sp=position, speed_sp=speed, stop_action=ev3.Motor.STOP_ACTION_BRAKE)
+        right_motor.run_to_rel_pos(position_sp=position, speed_sp=speed, stop_action=ev3.Motor.STOP_ACTION_BRAKE)
+        left_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        right_motor.wait_while(ev3.Motor.STATE_RUNNING)
         ev3.Sound.beep().wait()
 
     print("Goodbye!")
@@ -55,7 +51,7 @@ main()
 # Done: 3. Add a beep after the drive motors stop (see code below).  Test your code to hear the beep AFTER movement.
 #   ev3.Sound.beep().wait()
 
-# TODO: 4. Instead of using the run_forever, time.sleep, stop pattern switch to using the run_to_rel_pos command.
+# Done: 4. Instead of using the run_forever, time.sleep, stop pattern switch to using the run_to_rel_pos command.
 #   You will need to determine the position_sp value to pass into the run_to_rel_pos command as a named argument.
 #   Assume the diameter of the wheel is 1.3" (close enough).  A 1.3" diameter wheel results in approximately a 4"
 #     circumference, so 360 degrees = 4 inches of travel.
@@ -71,9 +67,9 @@ main()
 #        -- speed_sp
 #        -- stop_action
 
-# TODO: 5. Make sure the beep happens AFTER the motors stop.  Use the wait_while command to block code execution.
+# Done: 5. Make sure the beep happens AFTER the motors stop.  Use the wait_while command to block code execution.
 
-# TODO: 6. Formally test your work. When you think you have the problem complete run these tests:
+# Done: 6. Formally test your work. When you think you have the problem complete run these tests:
 #   200 dps 24 inches (make sure it drives within 2 inches of the target distance)
 #   400 dps 24 inches (make sure it drives within 2 inches of the target distance)
 #   800 dps 24 inches (make sure it drives within 2 inches of the target distance)
@@ -82,7 +78,7 @@ main()
 #   400 dps -36 inches (make sure it drives within 3 inches of the target distance)
 # Add more tests as you see fit.  Ideally you should be +/- 10% of the target goal this time.
 
-# TODO: 7. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.
+# Done: 7. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.
 #
 # Observations you should make, run_to_rel_pos is easier to use since it uses encoders that are independent of speed.
 
