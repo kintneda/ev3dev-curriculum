@@ -92,24 +92,32 @@ def main():
         #   Since you are only allowed to use states, not event callbacks, this last request is a pain, but it's doable
         #     with a while loop that blocks code execution until the down instance variable is False.
         #     Use a time.sleep(0.01) inside the while loop to do nothing but wait for the button to be released.
+        count = 0
+        if btn.down:
+            if count == 0:
+                while btn.down:
+                    ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
+                    ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
+                    if btn.down == False:
+                        break
+                count += 1
 
-        while btn.down:
-            ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
-            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
-            if btn.down.wait() == False:
-                break
+            if count == 1:
+                while btn.down:
+                    ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
+                    ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
+                    if btn.down == False:
+                        break
+                count += 1
 
-        while btn.down.wait():
-            ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
-            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
-            if btn.down.wait() == False:
-                break
+            if count == 2:
+                while btn.down:
+                    ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.AMBER)
+                    ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.AMBER)
+                    if btn.down == False:
+                        break
+                count -= 2
 
-        while btn.down.wait():
-            ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.AMBER)
-            ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.AMBER)
-            if btn.down.wait() == False:
-                break
 
 
         # TODO: 5. Formally test your work. When you think you have the problem complete run these tests:
