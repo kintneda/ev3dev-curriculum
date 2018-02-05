@@ -59,28 +59,32 @@ class Snatch3r(object):
 
     def arm_down(self):
         """Moves the Snatch3r arm to the down position."""
-        self.arm_motor.run_to_abs_pos(position_sp=0, speed_sp=0)
-        self.arm_motor.wait_while(ev3.Motor.STATE_RUNNING)
+        self.arm_motor.run_to_abs_pos(position_sp=0)
+        self.arm_motor.wait_while(ev3.Motor.STATE_RUNNING)  # Blocks until the motor finishes running
         ev3.Sound.beep()
+        
     def arm_calibration(self):
         """Runs the arm up until the touch sensor is hit then back to the bottom again, beeping at both locations.
         Once back at in the bottom position, gripper open, set the absolute encoder position to 0.  You are calibrated!
         The Snatch3r arm needs to move 14.2 revolutions to travel from the touch sensor to the open position."""
-        self.arm_motor.run_forever(speed_sp=800)
-        while self.touch_sensor.is_pressed:
+        self.arm_motor.run_forever(speed_sp=900)
+        while not self.touch_sensor.is_pressed:
             time.sleep(0.01)
+
         self.arm_motor.stop(stop_action="brake")
         ev3.Sound.beep()
+
         arm_revolutions_for_full_range = 14.2 * 360
         self.arm_motor.run_to_rel_pos(position_sp=-arm_revolutions_for_full_range)
         self.arm_motor.wait_while(ev3.Motor.STATE_RUNNING)
         ev3.Sound.beep()
-        self.arm_motor.position = 0
+        self.arm_motor.position = 0  # Calibrate the down position as 0 (this line is correct as is).
 
     def arm_up(self):
         """Moves the Snatch3r arm to the up position"""
-        self.arm_motor.run_forever(speed_sp=800)
+
+        self.arm_motor.run_forever(speed_sp=900)
         while not self.touch_sensor.is_pressed:
             time.sleep(0.01)
-        self.arm_motor.stop(stop_action="break")
+        self.arm_motor.stop(stop_action="brake")
         ev3.Sound.beep()
