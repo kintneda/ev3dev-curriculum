@@ -50,10 +50,10 @@ def main():
                   # ev3.Leds.ORANGE,  # Too close to another color in my opinion
                   # ev3.Leds.YELLOW,  # Too close to another color in my opinion
                   ev3.Leds.AMBER]
-
+    count = 0
     current_color_index = 0
     while True:
-        # TODO: 3. Implement the left, right, and up buttons as follows:
+        # DONE: 3. Implement the left, right, and up buttons as follows:
         #    When the up button is being pressed:
         #      -- print the word "up"
         #      -- turn off all LEDs
@@ -92,7 +92,7 @@ def main():
         #   Since you are only allowed to use states, not event callbacks, this last request is a pain, but it's doable
         #     with a while loop that blocks code execution until the down instance variable is False.
         #     Use a time.sleep(0.01) inside the while loop to do nothing but wait for the button to be released.
-        count = 0
+
         if btn.down:
             if count == 0:
                 while btn.down:
@@ -100,25 +100,25 @@ def main():
                     ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.GREEN)
                     if btn.down == False:
                         break
-                count += 1
-
             if count == 1:
                 while btn.down:
                     ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
                     ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.RED)
                     if btn.down == False:
                         break
-                count += 1
-
             if count == 2:
                 while btn.down:
                     ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.AMBER)
                     ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.AMBER)
                     if btn.down == False:
                         break
-                count -= 2
-
-
+            if count == 3:
+                while btn.down:
+                        ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.BLACK)
+                        ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.BLACK)
+            count += 1
+            if count > 3:
+                count = 0
 
         # TODO: 5. Formally test your work. When you think you have the problem complete run these tests:
         #   Press Left - Green left LED is on (try holding the button down for a few seconds when you to the press)
@@ -132,7 +132,7 @@ def main():
         #   Press Down - Both LEDs are Red (the cycle repeats)
         #   Press Back - Both LEDs turn Green, the robot says Goodbye and the program exits
 
-        # TODO: 6. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.
+        # DONE: 6. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.
         #
         # Observation you should make, working with buttons as 'states' is functional but usually 'events' work better.
         # Also observe that we don't use the Enter button.  Enter can cause issues since your program is running at the
