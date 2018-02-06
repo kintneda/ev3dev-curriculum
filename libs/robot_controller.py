@@ -88,7 +88,7 @@ class Snatch3r(object):
             time.sleep(0.01)
         self.arm_motor.stop(stop_action="brake")
         ev3.Sound.beep()
-    
+
     def shutdown(self):
         self.left_motor.stop(stop_action="brake")
         self.right_motor.stop(stop_action="brake")
