@@ -121,12 +121,12 @@ def main():
 
 def drive_forward(mqtt_client, left_speed_entry, right_speed_entry):
     print("drive_forward")
-    mqtt_client.send_message("drive_forward", [left_speed_entry, right_speed_entry])
+    mqtt_client.send_message("drive_forward", [int(left_speed_entry.get()), int(right_speed_entry.get())])
 
 
 def turn_left(mqtt_client, left_speed_entry, right_speed_entry):
     print("turn_left")
-    mqtt_client.send_message("turn_left", [left_speed_entry, right_speed_entry])
+    mqtt_client.send_message("turn_left", [int(left_speed_entry.get()), int(right_speed_entry.get())])
 
 
 def stop(mqtt_client):
@@ -136,12 +136,12 @@ def stop(mqtt_client):
 
 def turn_right(mqtt_client, left_speed_entry, right_speed_entry):
     print("turn_right")
-    mqtt_client.send_message("turn_right", [left_speed_entry, right_speed_entry])
+    mqtt_client.send_message("turn_right", [int(left_speed_entry.get()), int(right_speed_entry.get())])
 
 
 def drive_back(mqtt_client, left_speed_entry, right_speed_entry):
-    print("drive_back")
-    mqtt_client.send_message("drive_back", [left_speed_entry, right_speed_entry])
+    print("drive_backward")
+    mqtt_client.send_message("drive_backward", [int(left_speed_entry.get()), int(right_speed_entry.get())])
 
 
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
