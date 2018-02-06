@@ -106,7 +106,7 @@ def main():
         rc1.process()
         # DONE: 6. Call the .process() method on your channel 2 - 4 RemoteControl objects and demo your code.
         #   Review the handle functions below to see how they draw to the screen.  They are already finished.
-        rc2.procss()
+        rc2.process()
         rc3.process()
         rc4.process()
         # TODO: 7. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.
