@@ -55,7 +55,7 @@ def main():
     right_speed_entry.insert(0, "600")
     right_speed_entry.grid(row=1, column=2)
 
-    # TODO: 3. Implement the callbacks for the drive buttons. Set both the click and shortcut key callbacks.
+    # done: 3. Implement the callbacks for the drive buttons. Set both the click and shortcut key callbacks.
     #
     # To help get you started the arm up and down buttons have been implemented.
     # You need to implement the five drive buttons.  One has been writen below to help get you started but is commented
@@ -119,17 +119,17 @@ def main():
 # TODO: 4. Implement the functions for the drive button callbacks.
 def drive_forward(mqtt_client, left_speed_entry, right_speed_entry):
     print("Drive Forward")
-    mqtt_client.send_message("drive_forward", [left_speed_entry, right_speed_entry])
+    mqtt_client.send_message("drive_forward", [int(left_speed_entry), int(right_speed_entry)])
 
 
 def turn_left(mqtt_client, left_speed_entry, right_speed_entry):
     print("Turn Left")
-    mqtt_client.send_message("turn_left", [left_speed_entry, right_speed_entry])
+    mqtt_client.send_message("turn_left", [int(left_speed_entry), int(right_speed_entry)])
 
 
 def turn_right(mqtt_client, left_speed_entry, right_speed_entry):
     print("Turn Right")
-    mqtt_client.send_message("turn_right", [left_speed_entry, right_speed_entry])
+    mqtt_client.send_message("turn_right", [int(left_speed_entry), int(right_speed_entry)])
 
 
 def stop(mqtt_client):
@@ -139,7 +139,7 @@ def stop(mqtt_client):
 
 def drive_backward(mqtt_client, left_speed_entry, right_speed_entry):
     print("Drive backward")
-    mqtt_client.send_message("drive_backward", [left_speed_entry, right_speed_entry])
+    mqtt_client.send_message("drive_backward", [int(left_speed_entry), int(right_speed_entry)])
 
 # TODO: 5. Call over a TA or instructor to sign your team's checkoff sheet and do a code review.  This is the final one!
 #
