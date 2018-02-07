@@ -20,7 +20,7 @@ class Snatch3r(object):
     """Creates instance variables and defines methods for the robot."""
     def __init__(self):
         """Establishes instance variables for the robot."""
-        self.left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+        self.left_motor = ev3.LargeMotor(ev3.OUTPUT_D)
         self.right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
         self.arm_motor = ev3.MediumMotor(ev3.OUTPUT_A)
         self.touch_sensor = ev3.TouchSensor()
