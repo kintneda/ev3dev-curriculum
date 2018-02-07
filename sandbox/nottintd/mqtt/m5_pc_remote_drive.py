@@ -88,8 +88,8 @@ def main():
     back_button = ttk.Button(main_frame, text="Back")
     back_button.grid(row=4, column=1)
     # back_button and '<Down>' key
-    back_button['command'] = lambda: drive_backward(mqtt_client, left_speed_entry, right_speed_entry)
-    root.bind('<Down>', lambda event: drive_backward(mqtt_client, left_speed_entry, right_speed_entry))
+    back_button['command'] = lambda: drive_back(mqtt_client, left_speed_entry, right_speed_entry)
+    root.bind('<Down>', lambda event: drive_back(mqtt_client, left_speed_entry, right_speed_entry))
 
     up_button = ttk.Button(main_frame, text="Up")
     up_button.grid(row=5, column=0)
