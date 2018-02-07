@@ -119,7 +119,7 @@ def main():
 # ----------------------------------------------------------------------
 # Tkinter callbacks
 # ----------------------------------------------------------------------
-# TODO: 4. Implement the functions for the drive button callbacks.
+# DONE: 4. Implement the functions for the drive button callbacks.
 def luke(mqtt_client):
     print("Luke")
     mqtt_client.send_message("luke")
