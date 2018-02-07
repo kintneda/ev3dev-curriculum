@@ -90,6 +90,7 @@ class Snatch3r(object):
         ev3.Sound.beep()
 
     def shutdown(self):
+        """Stops everything and turns LEDs green."""
         self.left_motor.stop(stop_action="brake")
         self.right_motor.stop(stop_action="brake")
         self.arm_motor.stop(stop_action="brake")
@@ -108,21 +109,26 @@ class Snatch3r(object):
             time.sleep(0.1)  # Do nothing (except receive MQTT messages) until an MQTT message calls shutdown.
 
     def drive_forward(self, left_speed_entry, right_speed_entry):
+        """Drives the robot forward"""
         self.right_motor.run_forever(speed_sp=right_speed_entry)
         self.left_motor.run_forever(speed_sp=left_speed_entry)
 
     def turn_left(self, left_speed_entry, right_speed_entry):
+        """Turns the robot left"""
         self.right_motor.run_forever(speed_sp=right_speed_entry)
         self.left_motor.run_forever(speed_sp=-left_speed_entry)
 
     def turn_right(self, left_speed_entry, right_speed_entry):
+        """Turns the robot right"""
         self.right_motor.run_forever(speed_sp=-right_speed_entry)
         self.left_motor.run_forever(speed_sp=left_speed_entry)
 
     def drive_backward(self, left_speed_entry, right_speed_entry):
+        """Drives the robot backwards"""
         self.right_motor.run_forever(speed_sp=-right_speed_entry)
         self.left_motor.run_forever(speed_sp=-left_speed_entry)
 
     def stop(self):
+        """Stops the driving motors"""
         self.right_motor.run_forever(speed_sp=0)
         self.left_motor.run_forever(speed_sp=0)
