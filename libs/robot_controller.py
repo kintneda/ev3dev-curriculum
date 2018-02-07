@@ -93,7 +93,7 @@ class Snatch3r(object):
             time.sleep(0.01)
         self.arm_motor.stop(stop_action="brake")
         ev3.Sound.beep()
-    
+
     def shutdown(self):
         self.left_motor.stop(stop_action="brake")
         self.right_motor.stop(stop_action="brake")
@@ -102,3 +102,32 @@ class Snatch3r(object):
         ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.GREEN)
         print("Goodbye")
         ev3.Sound.speak("Goodbye")
+
+    def loop_forever(self):
+        # This is a convenience method that I don't really recommend for most programs other than m5.
+        #   This method is only useful if the only input to the robot is coming via mqtt.
+        #   MQTT messages will still call methods, but no other input or output happens.
+        # This method is given here since the concept might be confusing.
+        self.running = True
+        while self.running:
+            time.sleep(0.1)  # Do nothing (except receive MQTT messages) until an MQTT message calls shutdown.
+
+    def drive_forward(self, left_speed_entry, right_speed_entry):
+        self.right_motor.run_forever(speed_sp=right_speed_entry)
+        self.left_motor.run_forever(speed_sp=left_speed_entry)
+
+    def turn_left(self, left_speed_entry, right_speed_entry):
+        self.right_motor.run_forever(speed_sp=right_speed_entry)
+        self.left_motor.run_forever(speed_sp=-left_speed_entry)
+
+    def turn_right(self, left_speed_entry, right_speed_entry):
+        self.right_motor.run_forever(speed_sp=-right_speed_entry)
+        self.left_motor.run_forever(speed_sp=left_speed_entry)
+
+    def drive_backward(self, left_speed_entry, right_speed_entry):
+        self.right_motor.run_forever(speed_sp=-right_speed_entry)
+        self.left_motor.run_forever(speed_sp=-left_speed_entry)
+
+    def stop(self):
+        self.right_motor.run_forever(speed_sp=0)
+        self.left_motor.run_forever(speed_sp=0)

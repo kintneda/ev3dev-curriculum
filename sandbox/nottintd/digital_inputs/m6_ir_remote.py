@@ -66,11 +66,20 @@ def main():
     btn = ev3.Button()
     btn.on_backspace = lambda state: handle_shutdown(state, dc)
 
+    rc1 = ev3.RemoteControl(channel=1)
+    assert rc1.connected
+    rc1.on_red_up = lambda state: handle_red_up_1(state, dc)
+    rc1.on_red_down = lambda state: handle_red_down_1(state, dc)
+    rc1.on_blue_up = lambda state: handle_blue_up_1(state, dc)
+    rc1.on_blue_down = lambda state: handle_blue_down_1(state, dc)
     robot.arm_calibration()  # Start with an arm calibration in this program.
 
+
     while dc.running:
-        # TODO: 5. Process the RemoteControl objects.
+        # DONE: 5. Process the RemoteControl objects.
         btn.process()
+        rc1.process()
+        rc2.process()
         time.sleep(0.01)
 
     # TODO: 2. Have everyone talk about this problem together then pick one  member to modify libs/robot_controller.py
