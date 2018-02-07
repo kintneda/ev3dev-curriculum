@@ -12,8 +12,8 @@ f - Follow the line until the touch sensor is pressed.  You are allowed to assum
      Extra - For a harder challenge could you drive on the black line and handle left or right turns?
 q - Quit
 
-Authors: David Fisher and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher and Kyle Mehringer.
+"""  # Done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import ev3dev.ev3 as ev3
 import time
@@ -27,7 +27,7 @@ def main():
     print("--------------------------------------------")
     ev3.Sound.speak("Follow a line").wait()
 
-    # TODO: 4: After running the code set the default white and black levels to a better initial guess.
+    # Done: 4: After running the code set the default white and black levels to a better initial guess.
     #   Once you have the values hardcoded to resonable numbers here you don't really need the w and b commands below.
     white_level = 50
     black_level = 40
@@ -37,7 +37,7 @@ def main():
         command_to_run = input("Enter w (white), b (black), f (follow), or q (for quit): ")
         if command_to_run == 'w':
             print("Calibrate the white light level")
-            # TODO: 2. Read the reflected_light_intensity property of the color sensor and set white_level to that value
+            # Done: 2. Read the reflected_light_intensity property of the color sensor and set white_level to that value
             # As discussed in the prior module, it is recommended that you've added to your Snatch3r class's constructor
             # the color_sensor, as shown:
             #   self.color_sensor = ev3.ColorSensor()
@@ -47,7 +47,7 @@ def main():
             print("New white level is {}.".format(white_level))
         elif command_to_run == 'b':
             print("Calibrate the black light level")
-            # TODO: 3. Read the reflected_light_intensity property of the color sensor and set black_level
+            # Done: 3. Read the reflected_light_intensity property of the color sensor and set black_level
 
             print("New black level is {}.".format(black_level))
         elif command_to_run == 'f':
@@ -77,6 +77,18 @@ def follow_the_line(robot, white_level, black_level):
     # TODO: 5. Use the calibrated values for white and black to calculate a light threshold to determine if your robot
     # should drive straight or turn to the right.  You will need to test and refine your code until it works well.
     # Optional extra - For a harder challenge could you drive on the black line and handle left or right turns?
+
+    while True:
+        if robot.color_sensor.reflected_light_intensity >= white_level:
+            robot.left_motor.run_forever(speed_sp=300)
+            robot.right_motor.run_forever(speed_sp=300)
+        if robot.color_sensor.reflected_light_intensity <= black_level:
+            robot.left_motor.run_forever(speed_sp=300)
+            robot.right_motor.run_forever(speed_sp=100)
+        if robot.touch_sensor.is_pressed:
+            robot.left_motor.stop()
+            robot.right_motor.stop()
+            break
 
     robot.stop()
     ev3.Sound.speak("Done")
