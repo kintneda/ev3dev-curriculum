@@ -127,5 +127,3 @@ class Snatch3r(object):
         self.right_motor.run_forever(speed_sp=0)
         self.left_motor.run_forever(speed_sp=0)
 
-    def luke(self):
-        ev3.Sound.speak("Hello Luke.  We have been looking for you.  Please follow me")
