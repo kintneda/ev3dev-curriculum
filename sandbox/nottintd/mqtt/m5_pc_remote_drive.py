@@ -110,9 +110,6 @@ def main():
     e_button.grid(row=6, column=2)
     e_button['command'] = (lambda: quit_program(mqtt_client, True))
 
-    luke_button = ttk.Button(main_frame, text="Luke")
-    luke_button.grid(row=6, column=1)
-    luke_button['command'] = (lambda: luke(mqtt_client))
     root.mainloop()
 
 
@@ -120,11 +117,6 @@ def main():
 # Tkinter callbacks
 # ----------------------------------------------------------------------
 # DONE: 4. Implement the functions for the drive button callbacks.
-def luke(mqtt_client):
-    print("Luke")
-    mqtt_client.send_message("luke")
-
-
 def drive_forward(mqtt_client, left_speed_entry, right_speed_entry):
     print("drive_forward")
     mqtt_client.send_message("drive_forward", [int(left_speed_entry.get()), int(right_speed_entry.get())])
