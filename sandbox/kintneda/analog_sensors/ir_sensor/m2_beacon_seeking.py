@@ -19,7 +19,7 @@ import math
 
 import robot_controller as robo
 
-
+found = True
 def main():
     print("--------------------------------------------")
     print(" Beacon seeking")
@@ -28,10 +28,10 @@ def main():
 
     robot = robo.Snatch3r()
     try:
-        while True:
+        while found:
             seek_beacon(robot)
 
-            # TODO: 5. Save the result of the seek_beacon function (a bool), then use that value to only say "Found the
+            # Done: 5. Save the result of the seek_beacon function (a bool), then use that value to only say "Found the
             # beacon" if the return value is True.  (i.e. don't say "Found the beacon" if the attempts was cancelled.)
             ev3.Sound.speak("Found the beacon")
 
@@ -99,8 +99,12 @@ def seek_beacon(robot):
                     robot.left_motor.run_forever(speed_sp=forward_speed)
                     robot.right_motor.run_forever(speed_sp=forward_speed)
                 if current_distance <= 1:
+                    robot.left_motor.run_forever(speed_sp=forward_speed)
+                    robot.right_motor.run_forever(speed_sp=forward_speed)
+                    time.sleep(1.5)
                     robot.left_motor.stop()
                     robot.right_motor.stop()
+                    break
             if math.fabs(current_heading) > 2 < 10:
                 print("Ajusting Heading", current_heading)
                 if current_heading < 0:
@@ -113,6 +117,7 @@ def seek_beacon(robot):
                 robot.left_motor.stop()
                 robot.right_motor.stop()
                 print("Heading is too far off to fix")
+                found = False
 
 
 
