@@ -59,7 +59,7 @@ def main():
 
     # For our standard shutdown button.
     btn = ev3.Button()
-    # TODO: 2. Uncomment the lines below to setup event handlers for these buttons.
+    # Done: 2. Uncomment the lines below to setup event handlers for these buttons.
     btn.on_up = lambda state: drive_to_color(state, robot, ev3.ColorSensor.COLOR_RED)
     btn.on_down = lambda state: drive_to_color(state, robot, ev3.ColorSensor.COLOR_BLUE)
     btn.on_left = lambda state: drive_to_color(state, robot, ev3.ColorSensor.COLOR_BLACK)
@@ -105,7 +105,7 @@ def drive_to_color(button_state, robot, color_to_seek):
             robot.left_motor.run_forever(speed_sp=300)
             robot.right_motor.run_forever(speed_sp=300)
 
-        # TODO: 4. Call over a TA or instructor to sign your team's checkoff sheet.
+        # Done: 4. Call over a TA or instructor to sign your team's checkoff sheet.
         #
         # Observations you should make, the instance variable robot.color_sensor.color is always updating
         # to the color seen and that value is given to you as an int.
