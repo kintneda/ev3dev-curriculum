@@ -33,6 +33,7 @@ import robot_controller as robo
 #   ev3.ColorSensor.COLOR_BROWN   is the value 7
 COLOR_NAMES = ["None", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 # This list is just a helper list if you ever want the string (for printing or speaking) from a color value.
+COLOR_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7]
 
 
 class DataContainer(object):
@@ -89,18 +90,19 @@ def drive_to_color(button_state, robot, color_to_seek):
     if button_state:
         ev3.Sound.speak("Seeking " + COLOR_NAMES[color_to_seek]).wait()
         while True:
-            if color_to_seek:
-                robot.stop()
+
+            if ev3.ColorSensor.color == COLOR_NUMBERS[color_to_seek]:
+                robot.right_motor.stop()
+                robot.left_motor.stop()
                 break
             else:
-                robot.drive_forward(900, 900)
-                break
+                robot.right_motor.run_forever(speed_sp=300)
+                robot.left_motor.run_forever(speed_sp=300)
         # DONE: 3. Implement the task as stated in this module's initial comment block
         # It is recommended that you add to your Snatch3r class's constructor the color_sensor, as shown
         #   self.color_sensor = ev3.ColorSensor()
         #   assert self.color_sensor
         # Then here you can use a command like robot.color_sensor.color to check the value
-
 
 
         # TODO: 4. Call over a TA or instructor to sign your team's checkoff sheet.
