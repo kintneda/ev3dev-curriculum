@@ -4,7 +4,6 @@ project in CSSE120 due on February 20, 2018. Some code was taken from previous m
 
 import tkinter
 from tkinter import ttk
-
 import mqtt_remote_method_calls as com
 
 

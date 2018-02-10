@@ -7,3 +7,5 @@ def main():
     mqtt_client = com.MqttClient(robot)
     mqtt_client.connect_to_pc()
     robot.loop_forever()  # Calls a function that has a while True: loop within it to avoid letting the program end.
+
+main()
