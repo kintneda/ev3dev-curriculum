@@ -5,13 +5,36 @@ project in CSSE120 due on February 20, 2018. Some code was taken from previous m
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
+import ev3dev.ev3 as ev3
+import time
+import robot_controller as robo
+
+COLOR_NAMES = ["None", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
+COLOR_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7]
+
+
+class DataContainer(object):
+    """ Helper class that might be useful to communicate between different callbacks."""
+
+    def __init__(self):
+        self.running = True
 
 
 def main():
 
+    robot = robo.Snatch3r()
+    dc = DataContainer()
+
     mqtt_client = com.MqttClient()
     mqtt_client.connect_to_ev3()
 
+    while True:
+        driving(mqtt_client)
+        if robot.color_sensor == COLOR_NAMES[2]:
+            ev3.Sound.speak("Found " + COLOR_NAMES[2]).wait()
+
+
+def driving(mqtt_client):
     root = tkinter.Tk()
     root.title("MQTT Remote")
 
