@@ -6,9 +6,9 @@ from previous modules written by Dave Fisher."""
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
-import ev3dev.ev3 as ev3
+# import ev3dev.ev3 as ev3
 # import time
-import robot_controller as robo
+# import robot_controller as robo
 
 COLOR_NAMES = ["None", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 COLOR_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -20,19 +20,30 @@ class DataContainer(object):
     def __init__(self):
         self.running = True
 
+    def on_color_received(self, color):
+        print(color)
+
 
 def main():
 
-    robot = robo.Snatch3r()
-    dc = DataContainer()
-
-    mqtt_client = com.MqttClient()
+    my_delegate = DataContainer()
+    mqtt_client = com.MqttClient(my_delegate)
     mqtt_client.connect_to_ev3()
 
-    while True:
-        driving(mqtt_client)
-        if robot.color_sensor == COLOR_NAMES[2]:
-            ev3.Sound.speak("Found " + COLOR_NAMES[2]).wait()
+    driving(mqtt_client)
+
+
+def sensor(mqtt_client):
+    print('color searching')
+    # if mqtt_client == COLOR_NUMBERS[2]:
+    #     print('lake')
+    #     #  Robot sends back a picture of a lake.
+    #     pass
+    # if mqtt_client.color_sensor.color == COLOR_NUMBERS[3]:
+    #     print('mountains')
+    #     #  Robot sends back a picture of a mountain.
+    #     pass
+    pass
 
 
 def driving(mqtt_client):
@@ -102,6 +113,11 @@ def driving(mqtt_client):
     e_button = ttk.Button(main_frame, text="Exit")
     e_button.grid(row=6, column=2)
     e_button['command'] = (lambda: quit_program(mqtt_client, True))
+
+    s_button = ttk.Button(main_frame, text='Color Search')
+    s_button.grid(row=6, column=1)
+    s_button['command'] = (lambda: sensor(mqtt_client))
+    root.bind('<s>', lambda event: sensor(mqtt_client))
 
     root.mainloop()
 
