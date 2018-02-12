@@ -45,8 +45,8 @@ def main():
                 robot.left_motor.run_forever(speed_sp=100)
                 robot.right_motor.run_forever(speed_sp=-100)
             else:
-                robot.left_motor.stop()
-                robot.right_motor.stop()
+                robot.left_motor.run_forever(speed_sp=0)
+                robot.right_motor.run_forever(speed_sp=0)
 
             time.sleep(0.25)
 
