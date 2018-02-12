@@ -1,12 +1,13 @@
-"""The goal for this project is to create a program that will allow a robot to travel along a path and collect data
-images along the way, representing a tourist taking pictures. This code is written by Kyle Mehringer for the final
-project in CSSE120 due on February 20, 2018. Some code was taken from previous modules written by Dave Fisher."""
+"""The goal for this project is to create a program that will allow a robot to travel along a path
+and collect data images along the way, representing a tourist taking pictures. This code is written
+by Kyle Mehringer for the final project in CSSE120 due on February 20, 2018. Some code was taken
+from previous modules written by Dave Fisher."""
 
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
 import ev3dev.ev3 as ev3
-import time
+# import time
 import robot_controller as robo
 
 COLOR_NAMES = ["None", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
