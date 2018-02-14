@@ -1,9 +1,6 @@
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
-# import ev3dev.ev3 as ev3
-# import time
-# import robot_controller as robo
 
 COLOR_NAMES = ["None", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 COLOR_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7]
