@@ -1,6 +1,8 @@
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
+from tkinter import *
+from PIL import ImageTk, Image
 
 COLOR_NAMES = ["None", "Black", "Blue", "Green", "Yellow", "Red", "White", "Brown"]
 COLOR_NUMBERS = [0, 1, 2, 3, 4, 5, 6, 7]
@@ -16,8 +18,18 @@ class DataContainer(object):
         print(color)
         if color == COLOR_NUMBERS[2]:
             print("Lake")
+            root = Tk()
+            img = ImageTk.PhotoImage(Image.open("water.jpg"))
+            panel = Label(root, image=img)
+            panel.pack(side="bottom", fill="both", expand="yes")
+            root.mainloop()
         if color == COLOR_NUMBERS[3]:
             print("Mountains")
+            root = Tk()
+            img = ImageTk.PhotoImage(Image.open("clingmans_dome.jpg"))
+            panel = Label(root, image=img)
+            panel.pack(side="bottom", fill="both", expand="yes")
+            root.mainloop()
 
 
 def main():
