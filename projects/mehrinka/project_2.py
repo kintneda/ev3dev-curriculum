@@ -1,3 +1,11 @@
+"""This is the final project for CSSE120, Introduction to Software Development. For this project, the robot can be
+driven using keystrokes on the computer. When the up button on the ev3 is pressed, the robot sends back the color
+sensed by the color sensor to the computer. The pc then interprets the data and prints an image in tkinter. The
+robots imitates a tourist robot. Code was written primarily by Kyle Mehringer. Example code was used from Dave Fisher
+in earlier modules and from Stack Overflow."""
+
+
+
 import tkinter
 from tkinter import ttk
 import mqtt_remote_method_calls as com
