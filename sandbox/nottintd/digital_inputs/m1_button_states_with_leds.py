@@ -85,7 +85,7 @@ def main():
             ev3.Leds.set_color(ev3.Leds.RIGHT, ev3.Leds.RED)
             ev3.Leds.set_color(ev3.Leds.LEFT, ev3.Leds.BLACK)
 
-        # TODO: 4. Implement the down button to change the color of both LEDs.
+        # DONE: 4. Implement the down button to change the color of both LEDs.
         #   The first press to down should make both LEDs GREEN, the next press makes them RED, then AMBER, then off.
         #   If the user presses the down button again, wrap around the list to GREEN and continue as before.
         #   If the user holds down the button, figure out how to make the color change still only happen once.
@@ -120,7 +120,7 @@ def main():
             if count > 3:
                 count = 0
 
-        # TODO: 5. Formally test your work. When you think you have the problem complete run these tests:
+        # DONE: 5. Formally test your work. When you think you have the problem complete run these tests:
         #   Press Left - Green left LED is on (try holding the button down for a few seconds when you to the press)
         #   Press Right - Right right LED is on
         #   Press Up - Both LEDs are off
