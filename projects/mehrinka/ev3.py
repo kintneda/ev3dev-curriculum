@@ -12,7 +12,6 @@ class MyDelegate(object):
         self.robot = robo.Snatch3r()
 
     def drive_forward(self, left_speed, right_speed):
-        ev3.Sound.speak('drive forward')
         self.robot.drive_forward(left_speed, right_speed)
 
     def turn_left(self, left_speed, right_speed):
@@ -68,7 +67,6 @@ def main():
 
 
 def colors(button_state, mqtt_client,  bot):
-    ev3.Sound.speak("colors")
     if button_state:
         color = bot.color_sensor.color
         mqtt_client.send_message("on_color_received", [color])
