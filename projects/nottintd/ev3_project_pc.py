@@ -7,8 +7,12 @@ import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 
+class MyDelegate(object):
 
 def main():
+    mqtt = com.MqttClient()
+    mqtt.connect_to_ev3()
+
     # Everything for creating GUI
     root = tkinter.Tk()
     root.title("Burger Stand Menu")
@@ -111,6 +115,14 @@ def get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value, dou
     ev3.Sound.speak("Your order is a").wait()
     for k in range(len(your_order)):
         ev3.Sound.speak(your_order[k]).wait()
+
+    for k in range(len(your_order)):
+        if your_order[k] == "quarter pounder" or "half pounder" or "cheeseburger" or "double cheeseburger":
+            mqtt.send_message("make_burger")
+        if your_order[k] == "small fries" or "medium fries" or "large fries":
+            mqtt.send_message("get_fries")
+        if your_order[k] == "water" or "soda" or "juice" or "coffee":
+            mqtt.send_message("get_drink", )
 
 
 main()
