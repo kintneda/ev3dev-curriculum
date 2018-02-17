@@ -7,11 +7,10 @@ import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 
+mqtt_client = com.MqttClient()
+mqtt_client.connect_to_ev3()
 
 def main():
-    mqtt = com.MqttClient()
-    mqtt.connect_to_ev3()
-
     # Everything for creating GUI
     root = tkinter.Tk()
     root.title("Burger Stand Menu")
@@ -92,6 +91,8 @@ def main():
     order_button['command'] = lambda: get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value,
                                                 double_cheeseburger_value, small_fries_value, medium_fries_value,
                                                 large_fries_value, water_value, soda_value, juice_value, coffee_value)
+
+
     root.mainloop()
 
 #     END OF GUI
@@ -103,7 +104,8 @@ def get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value, dou
     rough_order = [quarter_pounder_value.get(), half_pounder_value.get(), cheeseburger_value.get(),
                         double_cheeseburger_value.get(), small_fries_value.get(), medium_fries_value.get(),
                         large_fries_value.get(), water_value.get(), soda_value.get(), juice_value.get(),
-                        coffee_value.get()]
+                         coffee_value.get()]
+
     print(rough_order)
     your_order = []
     for k in range(len(rough_order)):
@@ -111,67 +113,61 @@ def get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value, dou
             your_order = your_order + [rough_order[k]]
     print(your_order)
 
-    # ev3.Sound.speak("Your order is a").wait()
-    # for k in range(len(your_order)):
-    #     ev3.Sound.speak(your_order[k]).wait()
-
     for k in range(len(your_order)):
         if your_order[k] == str('quarter pounder'):
             print("Making your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("make_burger")
 
         if your_order[k] == str('half pounder'):
             print("Making your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("make_burger")
 
         if your_order[k] == str('cheeseburger'):
             print("Making your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("make_burger")
 
         if your_order[k] == str('double cheeseburger'):
             print("Making your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("make_burger")
 
         if your_order[k] == str('small fries'):
             print("Getting your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("get_fries")
 
         if your_order[k] == str('medium fries'):
             print("Getting your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("get_fries")
 
         if your_order[k] == str('large fries'):
             print("Getting your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("get_fries")
 
         if your_order[k] == str('water'):
             print("Getting your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("get_drink")
 
         if your_order[k] == str('soda'):
             print("Getting your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("get_drink")
 
         if your_order[k] == str('juice'):
             print("Getting your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
+            mqtt_client.send_message("get_drink")
 
         if your_order[k] == str('coffee'):
             print("Getting your ", end='')
             print(your_order[k])
-            # mqtt.send_message("make_burger")
-
-
+            mqtt_client.send_message("get_drink")
 
 
 

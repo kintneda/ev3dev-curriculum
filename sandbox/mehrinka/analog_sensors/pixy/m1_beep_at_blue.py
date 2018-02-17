@@ -43,7 +43,7 @@ def main():
 
         width = robot.pixy.value(3)
 
-        if width > 0:
+        if width > 10:
             ev3.Sound.beep()
 
         time.sleep(0.1)
