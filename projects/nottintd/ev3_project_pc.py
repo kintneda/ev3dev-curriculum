@@ -1,16 +1,26 @@
 import ev3dev.ev3 as ev3
 import time
-import math
 import robot_controller as robo
-from PIL import Image
 import mqtt_remote_method_calls as com
 import tkinter
 from tkinter import ttk
 
-mqtt_client = com.MqttClient()
+class MyDelegate(object):
+    def __init__(self, ):
+        self.is_pressed = 0
+
+    def take_order(self, touch_sensor):
+        print(touch_sensor)
+        self.is_pressed = touch_sensor
+
+my_delegate = MyDelegate()
+mqtt_client = com.MqttClient(my_delegate)
 mqtt_client.connect_to_ev3()
 
+
+
 def main():
+
     # Everything for creating GUI
     root = tkinter.Tk()
     root.title("Burger Stand Menu")
@@ -118,7 +128,13 @@ def get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value, dou
             print("Making your ", end='')
             print(your_order[k])
             mqtt_client.send_message("make_burger")
-
+            while True:
+                mqtt_client.send_message("get_touch_sensor")
+                if my_delegate.is_pressed == 1:
+                    break
+                time.sleep(1)
+        my_delegate.is_pressed = 0
+        print("You took your burger")
         if your_order[k] == str('half pounder'):
             print("Making your ", end='')
             print(your_order[k])
@@ -170,7 +186,7 @@ def get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value, dou
             mqtt_client.send_message("get_drink")
 
 
-
-
+def take_order():
+    your_order = 1
 
 main()

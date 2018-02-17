@@ -28,6 +28,7 @@ class Snatch3r(object):
         self.color_sensor = ev3.ColorSensor()
         self.ir_sensor = ev3.InfraredSensor()
         self.pixy = ev3.Sensor(driver_name="pixy-lego")
+        self.messenger = None
 
         assert self.arm_motor.connected
         assert self.touch_sensor
@@ -225,7 +226,7 @@ class Snatch3r(object):
                 self.left_motor.run_forever(speed_sp=0)
                 break
             time.sleep(1)
-        ev3.Sound.speak("Here is your burger").wait()
+        ev3.Sound.speak("Here is your burger")
     #     I need pc code to wait until this code gets here.  Want person to have to push button to take burger and
     # set robot to get the fries.  Maybe flip burger while making it
 
@@ -290,3 +291,9 @@ class Snatch3r(object):
                 break
             time.sleep(1)
         ev3.Sound.speak("Here is your drink").wait()
+
+    def get_touch_sensor(self):
+        self.messenger.send_message("take_order", [self.touch_sensor.is_pressed])
+
+    def set_messenger(self, messenger):
+        self.messenger = messenger
