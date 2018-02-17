@@ -259,7 +259,7 @@ class Snatch3r(object):
                 self.left_motor.run_forever(speed_sp=0)
                 break
             time.sleep(1)
-        ev3.Sound.speak("Here are your fries").wait()
+        ev3.Sound.speak("Here are your fries")
 
     def get_drink(self):
         ev3.Sound.speak("Going to get your drink").wait()
@@ -290,7 +290,7 @@ class Snatch3r(object):
                 self.left_motor.run_forever(speed_sp=0)
                 break
             time.sleep(1)
-        ev3.Sound.speak("Here is your drink").wait()
+        ev3.Sound.speak("Here is your drink")
 
     def get_touch_sensor(self):
         self.messenger.send_message("take_order", [self.touch_sensor.is_pressed])
