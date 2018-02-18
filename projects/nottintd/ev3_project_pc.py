@@ -102,19 +102,18 @@ def main():
                                                 double_cheeseburger_value, small_fries_value, medium_fries_value,
                                                 large_fries_value, water_value, soda_value, juice_value, coffee_value)
 
-
     root.mainloop()
 
 #     END OF GUI
 
 
 def get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value, double_cheeseburger_value,
-              small_fries_value, medium_fries_value,large_fries_value,
+              small_fries_value, medium_fries_value, large_fries_value,
               water_value, soda_value, juice_value, coffee_value):
     rough_order = [quarter_pounder_value.get(), half_pounder_value.get(), cheeseburger_value.get(),
-                        double_cheeseburger_value.get(), small_fries_value.get(), medium_fries_value.get(),
-                        large_fries_value.get(), water_value.get(), soda_value.get(), juice_value.get(),
-                         coffee_value.get()]
+                   double_cheeseburger_value.get(), small_fries_value.get(), medium_fries_value.get(),
+                   large_fries_value.get(), water_value.get(), soda_value.get(), juice_value.get(),
+                   coffee_value.get()]
 
     print(rough_order)
     your_order = []
@@ -122,139 +121,141 @@ def get_order(quarter_pounder_value, half_pounder_value, cheeseburger_value, dou
         if len(rough_order[k]) > 0:
             your_order = your_order + [rough_order[k]]
     print(your_order)
-
+    print(my_delegate.is_pressed)
     for k in range(len(your_order)):
         if your_order[k] == str('quarter pounder'):
             print("Making your ", end='')
             print(your_order[k])
             mqtt_client.send_message("make_burger")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your burger")
+                if my_delegate.is_pressed == 1:
+                    print("You took your burger")
+                    break
 
         if your_order[k] == str('half pounder'):
             print("Making your ", end='')
             print(your_order[k])
             mqtt_client.send_message("make_burger")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your burger")
+                if my_delegate.is_pressed == 1:
+                    print("You took your burger")
+                    break
 
         if your_order[k] == str('cheeseburger'):
             print("Making your ", end='')
             print(your_order[k])
             mqtt_client.send_message("make_burger")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your burger")
+                if my_delegate.is_pressed == 1:
+                    print("You took your burger")
+                    break
 
         if your_order[k] == str('double cheeseburger'):
             print("Making your ", end='')
             print(your_order[k])
             mqtt_client.send_message("make_burger")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your burger")
+                if my_delegate.is_pressed == 1:
+                    print("You took your burger")
+                    break
 
         if your_order[k] == str('small fries'):
             print("Getting your ", end='')
             print(your_order[k])
             mqtt_client.send_message("get_fries")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your fries")
+                if my_delegate.is_pressed == 1:
+                    print("You took your fries")
+                    break
 
         if your_order[k] == str('medium fries'):
             print("Getting your ", end='')
             print(your_order[k])
             mqtt_client.send_message("get_fries")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your fries")
+                if my_delegate.is_pressed == 1:
+                    print("You took your fries")
+                    break
 
         if your_order[k] == str('large fries'):
             print("Getting your ", end='')
             print(your_order[k])
             mqtt_client.send_message("get_fries")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your fries")
+                if my_delegate.is_pressed == 1:
+                    print("You took your fries")
+                    break
 
         if your_order[k] == str('water'):
             print("Getting your ", end='')
             print(your_order[k])
             mqtt_client.send_message("get_drink")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your drink")
+                if my_delegate.is_pressed == 1:
+                    print("You took your drink")
+                    break
 
         if your_order[k] == str('soda'):
             print("Getting your ", end='')
             print(your_order[k])
             mqtt_client.send_message("get_drink")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your drink")
+                if my_delegate.is_pressed == 1:
+                    print("You took your drink")
+                    break
 
         if your_order[k] == str('juice'):
             print("Getting your ", end='')
             print(your_order[k])
             mqtt_client.send_message("get_drink")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your drink")
+                if my_delegate.is_pressed == 1:
+                    print("You took your drink")
+                    break
 
         if your_order[k] == str('coffee'):
             print("Getting your ", end='')
             print(your_order[k])
             mqtt_client.send_message("get_drink")
+            my_delegate.is_pressed = 0
             while True:
                 mqtt_client.send_message("get_touch_sensor")
-                if my_delegate.is_pressed == 1:
-                    break
                 time.sleep(1)
-        my_delegate.is_pressed = 0
-        print("You took your drink")
+                if my_delegate.is_pressed == 1:
+                    print("You took your drink")
+                    break
+
+    mqtt_client.send_message("enjoy_meal")
 
 
 main()

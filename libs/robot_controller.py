@@ -209,7 +209,7 @@ class Snatch3r(object):
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=0)
                 break
-            time.sleep(1)
+            time.sleep(.1)
         ev3.Sound.speak("Making your burger").wait()
         time.sleep(3)
         ev3.Sound.speak("Your burger is ready").wait()
@@ -225,7 +225,7 @@ class Snatch3r(object):
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=0)
                 break
-            time.sleep(1)
+            time.sleep(.1)
         ev3.Sound.speak("Here is your burger")
     #     I need pc code to wait until this code gets here.  Want person to have to push button to take burger and
     # set robot to get the fries.  Maybe flip burger while making it
@@ -243,7 +243,7 @@ class Snatch3r(object):
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=0)
                 break
-            time.sleep(1)
+            time.sleep(.1)
         ev3.Sound.speak("Getting your fries").wait()
         time.sleep(3)
 
@@ -258,7 +258,7 @@ class Snatch3r(object):
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=0)
                 break
-            time.sleep(1)
+            time.sleep(.1)
         ev3.Sound.speak("Here are your fries")
 
     def get_drink(self):
@@ -274,7 +274,7 @@ class Snatch3r(object):
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=0)
                 break
-            time.sleep(1)
+            time.sleep(.1)
         ev3.Sound.speak("Filling up your cup").wait()
         time.sleep(3)
 
@@ -289,7 +289,7 @@ class Snatch3r(object):
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=0)
                 break
-            time.sleep(1)
+            time.sleep(.1)
         ev3.Sound.speak("Here is your drink")
 
     def get_touch_sensor(self):
@@ -297,3 +297,6 @@ class Snatch3r(object):
 
     def set_messenger(self, messenger):
         self.messenger = messenger
+
+    def enjoy_meal(self):
+        ev3.Sound.speak("Enjoy your meal")
