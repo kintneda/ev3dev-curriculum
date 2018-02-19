@@ -28,12 +28,12 @@ class DataContainer(object):
     def on_color_received(self, color):
         print(COLOR_NAMES[color])
 
-        if color == COLOR_NUMBERS[1]:
+        if color == COLOR_NUMBERS[5]:
             print("Mountains")
             self.img = ImageTk.PhotoImage(Image.open("clingmans_dome1.png"))
             self.panel = Label(self.root, image=self.img)
             self.panel.grid()
-        if color == COLOR_NUMBERS[2]:
+        if color == COLOR_NUMBERS[6]:
             print("Lake")
             self.img = ImageTk.PhotoImage(Image.open("water.png"))
             self.panel = Label(self.root, image=self.img)
