@@ -279,7 +279,7 @@ class Snatch3r(object):
                 ev3.Sound.beep()
                 self.right_motor.run_forever(speed_sp=0)
                 self.left_motor.run_forever(speed_sp=0)
-                break
+                break 
             time.sleep(.1)
         ev3.Sound.speak("Filling up your cup")
         time.sleep(3)
