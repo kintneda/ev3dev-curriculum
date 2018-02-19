@@ -1,3 +1,5 @@
+"""This is the place to test the image insertion for the final project."""
+
 from tkinter import *
 from PIL import ImageTk, Image
 

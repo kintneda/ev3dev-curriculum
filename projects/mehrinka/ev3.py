@@ -1,3 +1,6 @@
+"""This is the code that will be uploaded to the robot to run the final project. It listens to commands given from the
+computer and can also send information about the color sensed back to the computer."""
+
 import mqtt_remote_method_calls as com
 
 import ev3dev.ev3 as ev3
