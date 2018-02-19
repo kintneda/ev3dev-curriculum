@@ -197,7 +197,8 @@ class Snatch3r(object):
         return found
 
     def make_burger(self):
-        ev3.Sound.speak("Going to make your burger").wait()
+        ev3.Sound.speak("Going to make your burger")
+        time.sleep(1)
         self.right_motor.run_forever(speed_sp=-100)
         self.left_motor.run_forever(speed_sp=100)
         while True:
@@ -210,9 +211,10 @@ class Snatch3r(object):
                 self.left_motor.run_forever(speed_sp=0)
                 break
             time.sleep(.1)
-        ev3.Sound.speak("Making your burger").wait()
+        ev3.Sound.speak("Making your burger")
         time.sleep(3)
-        ev3.Sound.speak("Your burger is ready").wait()
+        ev3.Sound.speak("Your burger is ready")
+        time.sleep(1)
 
         self.right_motor.run_forever(speed_sp=100)
         self.left_motor.run_forever(speed_sp=-100)
@@ -227,11 +229,13 @@ class Snatch3r(object):
                 break
             time.sleep(.1)
         ev3.Sound.speak("Here is your burger")
+        time.sleep(1)
     #     I need pc code to wait until this code gets here.  Want person to have to push button to take burger and
     # set robot to get the fries.  Maybe flip burger while making it
 
     def get_fries(self):
-        ev3.Sound.speak("Going to get your fries").wait()
+        ev3.Sound.speak("Going to get your fries")
+        time.sleep(1)
         self.right_motor.run_forever(speed_sp=-100)
         self.left_motor.run_forever(speed_sp=100)
         while True:
@@ -244,7 +248,7 @@ class Snatch3r(object):
                 self.left_motor.run_forever(speed_sp=0)
                 break
             time.sleep(.1)
-        ev3.Sound.speak("Getting your fries").wait()
+        ev3.Sound.speak("Getting your fries")
         time.sleep(3)
 
         self.right_motor.run_forever(speed_sp=100)
@@ -260,9 +264,11 @@ class Snatch3r(object):
                 break
             time.sleep(.1)
         ev3.Sound.speak("Here are your fries")
+        time.sleep(1)
 
     def get_drink(self):
-        ev3.Sound.speak("Going to get your drink").wait()
+        ev3.Sound.speak("Going to get your drink")
+        time.sleep(1)
         self.right_motor.run_forever(speed_sp=100)
         self.left_motor.run_forever(speed_sp=-100)
         while True:
@@ -275,7 +281,7 @@ class Snatch3r(object):
                 self.left_motor.run_forever(speed_sp=0)
                 break
             time.sleep(.1)
-        ev3.Sound.speak("Filling up your cup").wait()
+        ev3.Sound.speak("Filling up your cup")
         time.sleep(3)
 
         self.right_motor.run_forever(speed_sp=-100)
@@ -291,6 +297,7 @@ class Snatch3r(object):
                 break
             time.sleep(.1)
         ev3.Sound.speak("Here is your drink")
+        time.sleep(1)
 
     def get_touch_sensor(self):
         self.messenger.send_message("take_order", [self.touch_sensor.is_pressed])
